@@ -4,19 +4,22 @@ type QuantitySelectorProps = {
   quantity: number;
   onDecrease: () => void;
   onIncrease: () => void;
+  disableDecrease?: boolean;
 };
 
 export function QuantitySelector({
   quantity,
   onDecrease,
   onIncrease,
+  disableDecrease = false,
 }: QuantitySelectorProps) {
   return (
     <div className="inline-flex items-center rounded-full border border-white/10 bg-white/4 p-1">
       <button
         type="button"
         onClick={onDecrease}
-        className="h-10 w-10 rounded-full text-base text-white/70 hover:bg-white/8 hover:text-white"
+        disabled={disableDecrease}
+        className="h-10 w-10 rounded-full text-base text-white/70 hover:bg-white/8 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
         aria-label="Decrease quantity"
       >
         -

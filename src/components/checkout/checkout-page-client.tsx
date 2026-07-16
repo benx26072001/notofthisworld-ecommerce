@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 
@@ -173,10 +174,16 @@ export function CheckoutPageClient() {
       <aside className="surface-panel h-fit rounded-[2rem] p-6 md:p-7">
         <div className="flex items-center justify-between">
           <p className="text-kicker">ORDER SUMMARY</p>
-          <p className="text-[0.64rem] uppercase tracking-[0.28em] text-white/44">
-            {items.length} item{items.length === 1 ? "" : "s"}
-          </p>
+          <Link
+            href="/cart"
+            className="text-[0.64rem] uppercase tracking-[0.28em] text-white/50 hover:text-white/85"
+          >
+            Edit cart
+          </Link>
         </div>
+        <p className="mt-1 text-[0.64rem] uppercase tracking-[0.28em] text-white/44">
+          {items.length} item{items.length === 1 ? "" : "s"}
+        </p>
         <div className="mt-6 space-y-4">
           {items.map((item) => (
             <div

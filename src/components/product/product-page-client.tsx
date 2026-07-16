@@ -125,6 +125,7 @@ export function ProductPageClient({
                     quantity={quantity}
                     onDecrease={() => setQuantity((current) => Math.max(1, current - 1))}
                     onIncrease={() => setQuantity((current) => current + 1)}
+                    disableDecrease={quantity <= 1}
                   />
                   <button
                     type="button"
