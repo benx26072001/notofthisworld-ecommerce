@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Menu, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { useCart } from "@/components/providers/cart-provider";
@@ -14,11 +14,24 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { cartCount, openCart } = useCart();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-      <div className="fixed inset-x-0 top-0 z-50 border-b border-white/6 bg-black/28 backdrop-blur-2xl">
+      <div
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 border-b backdrop-blur-2xl transition-colors duration-300",
+          scrolled ? "border-white/10 bg-black/55" : "border-white/6 bg-black/28",
+        )}
+      >
         <div className="container-shell flex min-h-[4.75rem] items-center justify-between gap-4 py-3">
           <Link
             href="/"
