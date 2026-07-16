@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="container-shell space-y-10 pb-20">
+    <div className="container-shell space-y-8 pb-20">
       <AnimatedReveal>
         <SectionHeading
           label={contactContent.headingLabel}
@@ -22,27 +22,27 @@ export default function ContactPage() {
         />
       </AnimatedReveal>
 
-      <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr]">
-        <AnimatedReveal className="editorial-frame rounded-[2rem] p-6 md:p-8">
+      <div className="grid gap-6 lg:grid-cols-[1fr_0.85fr]">
+        <AnimatedReveal className="editorial-frame rounded-[2rem] p-6 md:p-7">
           <ContactForm />
         </AnimatedReveal>
-        <AnimatedReveal delay={0.12} className="editorial-frame rounded-[2rem] p-6 md:p-8">
-          <div className="space-y-6">
+        <AnimatedReveal delay={0.12} className="editorial-frame rounded-[2rem] p-6 md:p-7">
+          <div className="space-y-5">
             <div>
               <p className="text-kicker">{contactContent.supportTitle}</p>
-              <p className="mt-3 text-sm leading-7 text-white/58">
+              <p className="mt-2 text-sm leading-7 text-white/58">
                 {contactContent.supportCopy}
               </p>
               <a
                 href={`mailto:${brand.supportEmail}`}
-                className="mt-4 block font-display text-2xl uppercase tracking-[0.12em] text-white/90"
+                className="mt-3 block font-display text-xl uppercase tracking-[0.12em] text-white/90"
               >
                 {brand.supportEmail}
               </a>
             </div>
-            <div>
+            <div className="border-t border-white/8 pt-5">
               <p className="text-kicker">SOCIAL</p>
-              <div className="mt-3 space-y-2">
+              <div className="mt-2 space-y-1.5">
                 {brand.socialLinks.map((link) => (
                   <a
                     key={link.label}
@@ -56,11 +56,11 @@ export default function ContactPage() {
                 ))}
               </div>
             </div>
-            <div>
+            <div className="border-t border-white/8 pt-5">
               <p className="text-kicker">HELP</p>
               <Link
                 href="/faq"
-                className="mt-3 inline-flex rounded-full border border-white/12 bg-white/[0.04] px-5 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/84"
+                className="button-secondary mt-3 inline-flex rounded-full px-5 py-3 text-xs font-semibold uppercase tracking-[0.24em]"
               >
                 {contactContent.faqCta}
               </Link>

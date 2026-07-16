@@ -3,6 +3,8 @@
 import { useDeferredValue, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import { Search } from "lucide-react";
+
 import { BrandImage } from "@/components/ui/brand-image";
 import { ProductGrid } from "@/components/product/product-grid";
 import { FilterPanel } from "@/components/shop/filter-panel";
@@ -69,13 +71,13 @@ export function ShopPageClient({ products }: ShopPageClientProps) {
   }, [category, deferredSearch, effectiveSort, products, size]);
 
   return (
-    <div className="container-shell space-y-8 pb-20">
+    <div className="container-shell space-y-7 pb-20">
       <AnimatedReveal className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
         <div className="space-y-4 lg:pb-2">
           <SectionHeading label="SHOP" title="Collection 01" />
         </div>
         <div className="surface-panel relative overflow-hidden rounded-[1.9rem]">
-          <div className="relative aspect-[1.42] md:aspect-[1.5]">
+          <div className="relative aspect-[1.6] md:aspect-[1.8]">
             <BrandImage
               src="/images/collections/collection-01-cover.svg"
               fallbackSrc="/images/editorial/archive-signal.svg"
@@ -112,7 +114,10 @@ export function ShopPageClient({ products }: ShopPageClientProps) {
             <ProductGrid products={filteredProducts} priorityCount={2} />
           ) : (
             <div className="editorial-frame rounded-[1.8rem] p-8 text-center">
-              <p className="font-display text-3xl uppercase tracking-[0.14em] text-white/90">
+              <div className="surface-subtle mx-auto flex size-12 items-center justify-center rounded-full">
+                <Search className="size-4 text-white/50" />
+              </div>
+              <p className="mt-5 font-display text-3xl uppercase tracking-[0.14em] text-white/90">
                 No pieces match.
               </p>
               <p className="mt-4 text-sm leading-7 text-white/56">

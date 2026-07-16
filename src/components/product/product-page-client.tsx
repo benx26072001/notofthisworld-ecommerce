@@ -49,8 +49,8 @@ export function ProductPageClient({
 
   return (
     <>
-      <div className="container-shell space-y-14 pb-20">
-        <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
+      <div className="container-shell space-y-11 pb-20">
+        <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
           <ProductGallery images={gallery} title={product.name} />
 
           <div className="space-y-8 lg:sticky lg:top-28">

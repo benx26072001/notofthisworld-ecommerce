@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function CollectionsPage() {
   return (
-    <div className="container-shell space-y-10 pb-20">
+    <div className="container-shell space-y-8 pb-20">
       <AnimatedReveal>
         <SectionHeading
           label={collectionsContent.headingLabel}
@@ -21,9 +21,9 @@ export default function CollectionsPage() {
           description={collectionsContent.headingDescription}
         />
       </AnimatedReveal>
-      <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
         <AnimatedReveal className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03]">
-          <div className="relative aspect-[0.82]">
+          <div className="relative aspect-[1.02] lg:aspect-[0.98]">
             <BrandImage
               src="/images/collections/collection-01-grid.svg"
               fallbackSrc="/images/editorial/archive-signal.svg"
@@ -34,7 +34,7 @@ export default function CollectionsPage() {
             />
           </div>
         </AnimatedReveal>
-        <AnimatedReveal delay={0.12} className="editorial-frame rounded-[2rem] p-8 md:p-10">
+        <AnimatedReveal delay={0.12} className="editorial-frame rounded-[2rem] p-7 md:p-9">
           <div className="space-y-5">
             <p className="text-kicker">COLLECTION 01</p>
             <p className="text-sm leading-8 text-white/60 md:text-base">

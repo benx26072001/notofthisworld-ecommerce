@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 
 import { useCart } from "@/components/providers/cart-provider";
-import { checkoutContent, brand } from "@/data/site";
+import { checkoutContent } from "@/data/site";
 import {
   createMockCheckoutSession,
   type CheckoutAddress,
@@ -39,7 +39,7 @@ export function CheckoutPageClient() {
   return (
     <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
       <form
-        className="space-y-6"
+        className="space-y-5"
         onSubmit={(event) => {
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
@@ -69,7 +69,7 @@ export function CheckoutPageClient() {
           });
         }}
       >
-        <div className="surface-panel rounded-[2rem] p-6 md:p-8">
+        <div className="surface-panel rounded-[2rem] p-6 md:p-7">
           <p className="text-kicker">CUSTOMER</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {[
@@ -91,7 +91,7 @@ export function CheckoutPageClient() {
           </div>
         </div>
 
-        <div className="surface-panel rounded-[2rem] p-6 md:p-8">
+        <div className="surface-panel rounded-[2rem] p-6 md:p-7">
           <p className="text-kicker">SHIPPING</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {[
@@ -148,29 +148,15 @@ export function CheckoutPageClient() {
           </div>
         </div>
 
-        <div className="surface-panel rounded-[2rem] p-6 md:p-8">
+        <div className="surface-panel rounded-[2rem] p-6 md:p-7">
           <p className="text-kicker">PAYMENT</p>
-          <div className="mt-6 rounded-[1.4rem] border border-dashed border-white/12 bg-black/20 p-5">
+          <div className="mt-6 rounded-[1.4rem] border border-white/8 bg-black/20 p-5">
             <p className="font-display text-2xl uppercase tracking-[0.12em] text-white/90">
               {checkoutContent.paymentTitle}
             </p>
             <p className="mt-3 text-sm leading-7 text-white/58">
               {checkoutContent.paymentCopy}
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {[
-                brand.checkoutEnv.publishableKey,
-                brand.checkoutEnv.secretKey,
-                brand.checkoutEnv.webhookSecret,
-              ].map((keyName) => (
-                <code
-                  key={keyName}
-                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-[0.62rem] uppercase tracking-[0.24em] text-white/72"
-                >
-                  {keyName}
-                </code>
-              ))}
-            </div>
           </div>
         </div>
 
@@ -184,8 +170,13 @@ export function CheckoutPageClient() {
         </button>
       </form>
 
-      <aside className="surface-panel h-fit rounded-[2rem] p-6 md:p-8">
-        <p className="text-kicker">ORDER SUMMARY</p>
+      <aside className="surface-panel h-fit rounded-[2rem] p-6 md:p-7">
+        <div className="flex items-center justify-between">
+          <p className="text-kicker">ORDER SUMMARY</p>
+          <p className="text-[0.64rem] uppercase tracking-[0.28em] text-white/44">
+            {items.length} item{items.length === 1 ? "" : "s"}
+          </p>
+        </div>
         <div className="mt-6 space-y-4">
           {items.map((item) => (
             <div

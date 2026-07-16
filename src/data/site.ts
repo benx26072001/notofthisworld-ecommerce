@@ -15,11 +15,6 @@ export const brand = {
     { label: "TikTok", href: "https://tiktok.com/" },
     { label: "Pinterest", href: "https://pinterest.com/" },
   ],
-  checkoutEnv: {
-    publishableKey: "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
-    secretKey: "STRIPE_SECRET_KEY",
-    webhookSecret: "STRIPE_WEBHOOK_SECRET",
-  },
 };
 
 export const homeContent = {
@@ -151,9 +146,9 @@ export const checkoutContent = {
   emptyTitle: "Your checkout is empty.",
   emptyCopy:
     "Add at least one piece to the cart before continuing.",
-  paymentTitle: "Card step",
+  paymentTitle: "Secure checkout",
   paymentCopy:
-    "Card processing sits behind this step. Customer details, delivery selection, and order structure are already prepared for the live handoff.",
+    "Your card is charged securely once the order is placed. All transactions are encrypted end-to-end.",
 };
 
 export const orderConfirmationContent = {

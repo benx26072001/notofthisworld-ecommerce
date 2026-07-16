@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function CheckoutPage() {
   return (
-    <div className="container-shell space-y-10 pb-20">
+    <div className="container-shell space-y-8 pb-20">
       <AnimatedReveal>
         <SectionHeading
           label={checkoutContent.headingLabel}

@@ -10,7 +10,7 @@ export function NewsletterSection() {
 
   if (submitted) {
     return (
-      <section className="container-shell pt-2 pb-16 md:pt-4 md:pb-20">
+      <section className="container-shell pt-0 pb-12 md:pt-2 md:pb-16">
         <div className="surface-subtle rounded-[1.75rem] px-6 py-7 md:px-8 md:py-8">
           <p className="text-kicker">{homeContent.newsletter.label}</p>
           <h2 className="mt-4 font-display text-[1.9rem] uppercase tracking-[0.14em] text-white/92 md:text-[2.4rem]">

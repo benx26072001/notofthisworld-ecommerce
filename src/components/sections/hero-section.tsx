@@ -6,7 +6,7 @@ import { homeContent } from "@/data/site";
 
 export function HeroSection() {
   return (
-    <section className="container-shell pb-12 pt-3 md:pb-18">
+    <section className="container-shell pb-8 pt-2 md:pb-12">
       <div className="editorial-frame grain grid min-h-[74svh] gap-6 overflow-hidden rounded-[2rem] p-5 md:grid-cols-[0.82fr_1.18fr] md:gap-8 md:p-9 xl:min-h-[80vh] xl:p-10">
         <AnimatedReveal className="flex flex-col justify-center gap-8 md:pr-6">
           <div className="space-y-6">

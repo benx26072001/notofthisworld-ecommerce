@@ -7,7 +7,7 @@ import { homeContent } from "@/data/site";
 
 export function EditorialSplit() {
   return (
-    <section className="container-shell py-14 md:py-20">
+    <section className="container-shell py-10 md:py-14">
       <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr]">
         <AnimatedReveal className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03]">
           <div className="relative aspect-[0.86]">

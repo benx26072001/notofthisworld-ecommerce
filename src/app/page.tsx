@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <section className="container-shell pt-5 pb-14 md:pt-7 md:pb-20">
+      <section className="container-shell pt-2 pb-12 md:pt-3 md:pb-16">
         <AnimatedReveal className="space-y-6 md:space-y-8">
           <SectionHeading label={homeContent.drop.label} title={homeContent.drop.title} />
           <ProductGrid products={homeDropProducts} priorityCount={2} />

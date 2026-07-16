@@ -39,11 +39,11 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
 
   return (
     <div
-      className="grid gap-4 lg:grid-cols-[1fr_6.5rem] lg:items-start"
+      className="grid gap-3 lg:grid-cols-[1fr_6.5rem] lg:items-start"
       aria-label={`${title} gallery`}
     >
-      <div className="space-y-4">
-        <div className="surface-panel relative aspect-[0.86] overflow-hidden rounded-[2rem] md:aspect-[0.84]">
+      <div className="space-y-3">
+        <div className="surface-panel relative aspect-[0.82] overflow-hidden rounded-[2rem] md:aspect-[0.78]">
           <BrandImage
             src={selectedImage.src}
             fallbackSrc={selectedImage.fallbackSrc}

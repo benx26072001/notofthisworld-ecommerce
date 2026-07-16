@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="container-shell space-y-10 pb-20">
+    <div className="container-shell space-y-8 pb-20">
       <AnimatedReveal>
         <SectionHeading
           label={aboutContent.headingLabel}
@@ -21,19 +21,19 @@ export default function AboutPage() {
         />
       </AnimatedReveal>
 
-      <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
-        <AnimatedReveal className="editorial-frame rounded-[2rem] p-8 md:p-10">
-          <div className="space-y-5">
+      <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+        <AnimatedReveal className="editorial-frame rounded-[2rem] p-7 md:p-9">
+          <div className="space-y-4">
             <p className="text-kicker">MANIFESTO</p>
             {aboutContent.manifesto.map((line) => (
-              <p key={line} className="text-sm leading-8 text-white/62 md:text-base">
+              <p key={line} className="text-sm leading-7 text-white/62 md:text-base">
                 {line}
               </p>
             ))}
           </div>
         </AnimatedReveal>
         <AnimatedReveal delay={0.12} className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03]">
-          <div className="relative aspect-[0.86]">
+          <div className="relative aspect-[1.02] lg:aspect-[0.94]">
             <BrandImage
               src="/images/editorial/brand-story.svg"
               fallbackSrc="/images/editorial/archive-signal.svg"
