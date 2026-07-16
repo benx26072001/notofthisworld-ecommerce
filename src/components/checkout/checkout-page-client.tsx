@@ -14,15 +14,31 @@ import {
 } from "@/lib/checkout";
 import { cn, formatCurrency } from "@/lib/utils";
 
+const CUSTOMER_FIELDS = [
+  ["firstName", "First name"],
+  ["lastName", "Last name"],
+  ["email", "Email"],
+  ["phone", "Phone"],
+] as const;
+
+const SHIPPING_FIELDS = [
+  ["address", "Address", true],
+  ["apartment", "Apartment / Suite", true],
+  ["city", "City", false],
+  ["postalCode", "Postal code", false],
+  ["country", "Country", true],
+] as const;
+
+const DELIVERY_OPTIONS: Array<[CheckoutDelivery, string, string]> = [
+  ["standard", "Standard delivery", "3-5 business days / $8"],
+  ["express", "Express delivery", "1-2 business days / $18"],
+];
+
 export function CheckoutPageClient() {
   const router = useRouter();
   const { clearCart, items, subtotal } = useCart();
   const [isPending, startTransition] = useTransition();
   const [delivery, setDelivery] = useState<CheckoutDelivery>("standard");
-  const deliveryOptions: Array<[CheckoutDelivery, string, string]> = [
-    ["standard", "Standard delivery", "3-5 business days / $8"],
-    ["express", "Express delivery", "1-2 business days / $18"],
-  ];
 
   if (items.length === 0) {
     return (
@@ -73,12 +89,7 @@ export function CheckoutPageClient() {
         <div className="surface-panel rounded-[2rem] p-6 md:p-7">
           <p className="text-kicker">CUSTOMER</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {[
-              ["firstName", "First name"],
-              ["lastName", "Last name"],
-              ["email", "Email"],
-              ["phone", "Phone"],
-            ].map(([name, label]) => (
+            {CUSTOMER_FIELDS.map(([name, label]) => (
               <label key={name} className="space-y-2 text-sm text-white/58">
                 <span>{label}</span>
                 <input
@@ -95,31 +106,24 @@ export function CheckoutPageClient() {
         <div className="surface-panel rounded-[2rem] p-6 md:p-7">
           <p className="text-kicker">SHIPPING</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {[
-              ["address", "Address", true],
-              ["apartment", "Apartment / Suite", true],
-              ["city", "City", false],
-              ["postalCode", "Postal code", false],
-              ["country", "Country", true],
-            ].map(([name, label, fullWidth]) => (
-                <label
-                  key={name as string}
-                  className={`space-y-2 text-sm text-white/58 ${
-                    fullWidth ? "md:col-span-2" : ""
-                  }`}
-                >
-                  <span>{label}</span>
-                  <input
-                    name={name as string}
-                    required={label !== "Apartment / Suite"}
-                    className="field-shell h-12 w-full rounded-[1rem] px-4 text-white outline-none"
-                  />
-                </label>
-              ),
-            )}
+            {SHIPPING_FIELDS.map(([name, label, fullWidth]) => (
+              <label
+                key={name}
+                className={`space-y-2 text-sm text-white/58 ${
+                  fullWidth ? "md:col-span-2" : ""
+                }`}
+              >
+                <span>{label}</span>
+                <input
+                  name={name}
+                  required={label !== "Apartment / Suite"}
+                  className="field-shell h-12 w-full rounded-[1rem] px-4 text-white outline-none"
+                />
+              </label>
+            ))}
           </div>
           <div className="mt-6 grid gap-3">
-            {deliveryOptions.map(([value, label, hint]) => (
+            {DELIVERY_OPTIONS.map(([value, label, hint]) => (
               <label
                 key={value}
                 className={cn(
