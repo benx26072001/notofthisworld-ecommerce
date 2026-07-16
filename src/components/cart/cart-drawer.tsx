@@ -28,7 +28,7 @@ export function CartDrawer() {
             type="button"
             aria-label="Close cart"
             onClick={closeCart}
-            className="fixed inset-0 z-[70] bg-black/68 backdrop-blur-sm"
+            className="fixed inset-0 z-[70] bg-black/72 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

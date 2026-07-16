@@ -27,7 +27,7 @@ export function EditorialSplit() {
             {homeContent.collectionStory.notes.map((line) => (
               <div
                 key={line}
-                className="rounded-[1.3rem] border border-white/10 bg-white/[0.03] px-4 py-4 text-[0.68rem] uppercase tracking-[0.28em] text-white/74"
+                className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] px-4 py-4 text-[0.68rem] uppercase tracking-[0.28em] text-white/74"
               >
                 {line}
               </div>

@@ -158,7 +158,7 @@ export function ProductPageClient({
               {accordionSections.map((section) => (
                 <div
                   key={section.key}
-                  className={`overflow-hidden rounded-[1.4rem] border ${
+                  className={`overflow-hidden rounded-[1.5rem] border ${
                     activeSection === section.key
                       ? "border-white/14 bg-white/[0.045]"
                       : "border-white/8 bg-white/[0.025]"
