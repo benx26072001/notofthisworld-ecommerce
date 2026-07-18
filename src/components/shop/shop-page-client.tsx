@@ -1,7 +1,6 @@
 "use client";
 
 import { useDeferredValue, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 
 import { Search } from "lucide-react";
 
@@ -14,20 +13,17 @@ import type { Product } from "@/types/product";
 
 type ShopPageClientProps = {
   products: Product[];
+  defaultToNewest?: boolean;
 };
 
-export function ShopPageClient({ products }: ShopPageClientProps) {
-  const searchParams = useSearchParams();
+export function ShopPageClient({ products, defaultToNewest = false }: ShopPageClientProps) {
   const [category, setCategory] = useState("All");
   const [size, setSize] = useState("All");
   const [sort, setSort] = useState("featured");
   const [search, setSearch] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const deferredSearch = useDeferredValue(search);
-  const effectiveSort =
-    sort === "featured" && searchParams.get("tag") === "new-drop"
-      ? "newest"
-      : sort;
+  const effectiveSort = sort === "featured" && defaultToNewest ? "newest" : sort;
 
   const filteredProducts = useMemo(() => {
     let nextProducts = [...products];

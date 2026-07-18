@@ -8,7 +8,7 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { PageTransition } from "@/components/layout/page-transition";
 import { CartProvider } from "@/components/providers/cart-provider";
-import { brand } from "@/data/site";
+import { brand, siteUrl } from "@/data/site";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -21,7 +21,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(brand.domain),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${brand.name} | Premium Streetwear`,
     template: `%s | ${brand.name}`,

@@ -17,6 +17,11 @@ export const brand = {
   ],
 };
 
+// Falls back to the brand's canonical domain when NEXT_PUBLIC_SITE_URL isn't
+// set, so metadata/sitemap/robots URLs reflect wherever the site is actually
+// deployed (e.g. a Vercel preview or staging URL) instead of a hardcoded domain.
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? brand.domain;
+
 export const homeContent = {
   hero: {
     eyebrow: "NEW DROP / COLLECTION 01",

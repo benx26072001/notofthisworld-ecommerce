@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   description: collectionsContent.headingDescription,
 };
 
-export default function ShopPage() {
-  return <ShopPageClient products={products} />;
+type ShopPageProps = {
+  searchParams: Promise<{ tag?: string }>;
+};
+
+export default async function ShopPage({ searchParams }: ShopPageProps) {
+  const { tag } = await searchParams;
+
+  return <ShopPageClient products={products} defaultToNewest={tag === "new-drop"} />;
 }

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { brand } from "@/data/site";
+import { siteUrl } from "@/data/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${brand.domain}/sitemap.xml`,
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }
