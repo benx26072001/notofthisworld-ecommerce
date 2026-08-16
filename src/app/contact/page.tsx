@@ -2,18 +2,23 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ContactForm } from "@/components/forms/contact-form";
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { AnimatedReveal } from "@/components/ui/animated-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { brand, contactContent } from "@/data/site";
+import { brand, contactContent, pageMeta } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: contactContent.headingDescription,
+  title: pageMeta.contact.title,
+  description: pageMeta.contact.description,
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
   return (
     <div className="container-shell space-y-8 pb-20">
+      <Breadcrumbs
+        items={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+      />
       <AnimatedReveal>
         <SectionHeading
           label={contactContent.headingLabel}

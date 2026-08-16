@@ -12,9 +12,9 @@ export function EditorialSplit() {
         <AnimatedReveal className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03]">
           <div className="relative aspect-[0.86]">
             <BrandImage
-              src="/images/editorial/collection-01-editorial.jfif"
-              fallbackSrc="/images/collections/collection-01-grid.svg"
-              alt="Collection 01 editorial composition"
+              src="/images/editorial/collection-01-editorial.jpg"
+              fallbackSrc="/images/collections/collection-01-grid.jpg"
+              alt="Collection 01 editorial pairing the Heavy Washed Jacket and Crown of Thorns Hoodie"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"

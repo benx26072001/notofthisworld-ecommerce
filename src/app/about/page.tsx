@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
 
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { BrandImage } from "@/components/ui/brand-image";
 import { AnimatedReveal } from "@/components/ui/animated-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { aboutContent } from "@/data/site";
+import { aboutContent, pageMeta } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: aboutContent.headingDescription,
+  title: pageMeta.about.title,
+  description: pageMeta.about.description,
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
   return (
     <div className="container-shell space-y-8 pb-20">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
       <AnimatedReveal>
         <SectionHeading
           label={aboutContent.headingLabel}
@@ -35,9 +38,9 @@ export default function AboutPage() {
         <AnimatedReveal delay={0.12} className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03]">
           <div className="relative aspect-[1.02] lg:aspect-[0.94]">
             <BrandImage
-              src="/images/editorial/brand-story.svg"
-              fallbackSrc="/images/editorial/archive-signal.svg"
-              alt="Brand story editorial artwork"
+              src="/images/editorial/brand-story.jpg"
+              fallbackSrc="/images/editorial/archive-signal.jpg"
+              alt="Brand story artwork pairing the Heavy Washed Jacket with a Madonna portrait in low light"
               fill
               sizes="(min-width: 1024px) 48vw, 100vw"
               className="object-cover"

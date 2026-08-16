@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Manrope, Sora } from "next/font/google";
 
 import "@/app/globals.css";
@@ -39,14 +40,6 @@ export const metadata: Metadata = {
     title: brand.name,
     description: brand.metadataDescription,
     type: "website",
-    images: [
-      {
-        url: "/images/collections/collection-01-cover.svg",
-        width: 1600,
-        height: 1200,
-        alt: `${brand.collection} cover artwork`,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -55,17 +48,32 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: brand.name,
+  url: siteUrl,
+  logo: `${siteUrl}/icon.svg`,
+  sameAs: brand.socialLinks.map((link) => link.href),
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <html
       lang="en"
       className={`${manrope.variable} ${sora.variable} bg-background text-foreground antialiased`}
     >
       <body className="min-h-screen bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <CartProvider>
           <div className="relative flex min-h-screen flex-col">
             <Header />
@@ -76,6 +84,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </CartProvider>
+        {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
       </body>
     </html>
   );

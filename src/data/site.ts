@@ -6,6 +6,8 @@ export const brand = {
   launchNotice: "Collection 01 now live",
   supportEmail: "support@notofthisworld.studio",
   supportWindow: "Mon-Fri / 10AM-6PM",
+  responsePromise: "Every message gets a reply within 1 business day.",
+  currency: "USD",
   footerNote:
     "Dark washed garments shaped with conviction, restraint, and weight.",
   metadataDescription:
@@ -156,13 +158,36 @@ export const checkoutContent = {
     "Your card is charged securely once the order is placed. All transactions are encrypted end-to-end.",
 };
 
-export const orderConfirmationContent = {
+export const thankYouContent = {
   headingLabel: "ORDER CONFIRMED",
   headingTitle: "Your order is placed.",
   headingDescription:
     "Confirmation and tracking details follow through the email attached to the order.",
   primaryCta: "Continue shopping",
   secondaryCta: "Contact support",
+  statusLabel: "Payment authorized / fulfillment pending",
+  nextStepsLabel: "WHAT HAPPENS NEXT",
+  nextSteps: [
+    {
+      title: "Confirmation email",
+      copy: "A confirmation lands in your inbox with the full order summary.",
+    },
+    {
+      title: "Studio packing",
+      copy: "The studio packs your order within 2 to 4 business days.",
+    },
+    {
+      title: "Tracking issued",
+      copy: "Tracking is sent as soon as the carrier scans the parcel.",
+    },
+  ],
+  linksLabel: "KEEP GOING",
+  links: [
+    { label: "Continue shopping", href: "/shop" },
+    { label: "Read FAQ", href: "/faq" },
+    { label: "Contact support", href: "/contact" },
+    { label: "Collections", href: "/collections" },
+  ],
 };
 
 export const notFoundContent = {
@@ -170,12 +195,75 @@ export const notFoundContent = {
   title: "The signal you reached is not here.",
   description:
     "The page may have moved deeper into the archive, or it never belonged to this release.",
+  primaryCta: "Shop Collection",
+  secondaryCta: "Back Home",
+  recoveryLabel: "FIND YOUR WAY",
+  recoveryLinks: [
+    { label: "FAQ", href: "/faq" },
+    { label: "Cart", href: "/cart" },
+  ],
+  productRecoveryLabel: "STILL IN THE DROP",
+  productRecoveryTitle: "New from Collection 01",
+  supportLabel: "STILL STUCK?",
+  quickAnswersLabel: "QUICK ANSWERS",
+  quickAnswersTitle: "Common questions",
+  quickAnswersCta: "Read the full FAQ",
 };
 
 export const loadingContent = {
   label: "ENTERING COLLECTION 01",
   title: "Not Of This World",
 };
+
+// Single source of truth for per-route <title> and meta description content.
+// Titles stay under 40 characters so the "%s | NOT OF THIS WORLD" template
+// (20 characters) keeps the full rendered title under Google's ~60 char cutoff.
+export const pageMeta = {
+  home: {
+    title: "Christian Streetwear, Washed Black",
+    description:
+      "Shop NOT OF THIS WORLD Collection 01: washed black tees, fleece, and outerwear built on faith, restraint, and weight.",
+  },
+  shop: {
+    title: "Shop Collection 01",
+    description:
+      "Browse the full Collection 01 drop: tees, long sleeves, hoodies, fleece, outerwear, and accessories in washed black.",
+  },
+  collections: {
+    title: "Archive 01 Collection",
+    description:
+      "Explore Archive 01, the disciplined first drop built around washed black garments and measured graphics.",
+  },
+  about: {
+    title: "Brand Story & Mission",
+    description:
+      "The mission, language, and position behind NOT OF THIS WORLD: faith-driven streetwear with an editorial eye.",
+  },
+  contact: {
+    title: "Contact Studio Support",
+    description:
+      "Reach studio support for order care, sizing help, and release questions. Replies within 1 business day.",
+  },
+  faq: {
+    title: "FAQ: Shipping, Returns & Sizing",
+    description:
+      "Answers on shipping times, returns, sizing, care instructions, tracking, and restocks for Collection 01.",
+  },
+  cart: {
+    title: "Your Cart",
+    description: "Review your selected pieces, adjust quantities, and move into checkout.",
+  },
+  checkout: {
+    title: "Secure Checkout",
+    description:
+      "Enter customer, delivery, and payment details to complete your Collection 01 order securely.",
+  },
+  thankYou: {
+    title: "Order Confirmed",
+    description:
+      "Your Not Of This World order is confirmed. Track what happens next, from studio packing to carrier scan.",
+  },
+} as const;
 
 export const navigation = [
   { label: "New", href: "/shop?tag=new-drop" },

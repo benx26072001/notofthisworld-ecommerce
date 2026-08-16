@@ -39,6 +39,6 @@ export function createMockCheckoutSession({
 
   return {
     orderId,
-    redirectUrl: `/order-confirmation?order=${orderId}&delivery=${deliveryCode}`,
+    redirectUrl: `/thank-you?order=${orderId}&delivery=${deliveryCode}`,
   };
 }

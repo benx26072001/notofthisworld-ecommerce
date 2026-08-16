@@ -249,3 +249,9 @@ input[type="checkbox"] {
     padding-inline: 2.75rem;
   }
 }
+
+@media (max-width: 767px) {
+  body.has-sticky-cta {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+}

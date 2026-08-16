@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 
 import { useCart } from "@/components/providers/cart-provider";
-import { checkoutContent } from "@/data/site";
+import { brand, checkoutContent } from "@/data/site";
+import { trackEvent } from "@/lib/analytics";
 import {
   createMockCheckoutSession,
   type CheckoutAddress,
@@ -78,6 +79,18 @@ export function CheckoutPageClient() {
             customer,
             address,
             delivery,
+          });
+
+          trackEvent("begin_checkout", {
+            currency: brand.currency,
+            value: subtotal,
+            items: items.map((item) => ({
+              item_id: item.code,
+              item_name: item.name,
+              item_variant: item.size,
+              price: item.price,
+              quantity: item.quantity,
+            })),
           });
 
           startTransition(() => {

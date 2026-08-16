@@ -45,9 +45,9 @@ export function SizeGuideModal({ isOpen, onClose }: SizeGuideModalProps) {
                 <div className="surface-subtle relative overflow-hidden rounded-[1.5rem]">
                   <div className="relative aspect-[0.88]">
                     <BrandImage
-                      src="/images/editorial/brand-story.svg"
-                      fallbackSrc="/images/editorial/archive-signal.svg"
-                      alt="Size guide editorial artwork"
+                      src="/images/editorial/brand-story.jpg"
+                      fallbackSrc="/images/editorial/archive-signal.jpg"
+                      alt=""
                       fill
                       sizes="(min-width: 768px) 24vw, 100vw"
                       className="object-cover"

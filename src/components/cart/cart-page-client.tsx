@@ -1,15 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import { useRef } from "react";
 
 import { useCart } from "@/components/providers/cart-provider";
 import { BrandImage } from "@/components/ui/brand-image";
 import { QuantitySelector } from "@/components/ui/quantity-selector";
+import { StickyMobileCta } from "@/components/ui/sticky-mobile-cta";
 import { cartContent } from "@/data/site";
 import { formatCurrency } from "@/lib/utils";
 
 export function CartPageClient() {
   const { items, removeItem, subtotal, updateQuantity } = useCart();
+  const checkoutRef = useRef<HTMLAnchorElement>(null);
 
   if (items.length === 0) {
     return (
@@ -111,12 +114,19 @@ export function CartPageClient() {
           </div>
         </div>
         <Link
+          ref={checkoutRef}
           href="/checkout"
           className="button-primary mt-8 inline-flex w-full justify-center rounded-full px-6 py-4 text-[0.68rem] font-semibold uppercase tracking-[0.3em]"
         >
           Continue to checkout
         </Link>
       </aside>
+      <StickyMobileCta
+        label="Checkout"
+        meta={formatCurrency(subtotal)}
+        href="/checkout"
+        watchRef={checkoutRef}
+      />
     </div>
   );
 }

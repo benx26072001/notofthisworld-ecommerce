@@ -11,6 +11,8 @@ import {
 } from "react";
 
 import { getProductPrimaryImage } from "@/data/products";
+import { brand } from "@/data/site";
+import { trackEvent } from "@/lib/analytics";
 import type { CartItem, Product } from "@/types/product";
 
 type AddItemInput = {
@@ -115,6 +117,20 @@ export function CartProvider({ children }: PropsWithChildren) {
       });
 
       setIsCartOpen(true);
+
+      trackEvent("add_to_cart", {
+        currency: brand.currency,
+        value: product.price * quantity,
+        items: [
+          {
+            item_id: product.code,
+            item_name: product.name,
+            item_variant: size,
+            price: product.price,
+            quantity,
+          },
+        ],
+      });
     };
 
     const updateQuantity = (slug: string, size: string, quantity: number) => {

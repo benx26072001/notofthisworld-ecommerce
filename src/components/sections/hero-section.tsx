@@ -40,9 +40,9 @@ export function HeroSection() {
           <div className="surface-panel relative overflow-hidden rounded-[1.75rem]">
             <div className="relative aspect-[0.9] md:aspect-[0.86]">
               <BrandImage
-                src="/images/products/back/not-of-this-world-tee-back.png"
-                fallbackSrc="/images/collections/collection-01-cover.svg"
-                alt="Not Of This World Tee hero feature"
+                src="/images/products/back/not-of-this-world-tee-back.jpg"
+                fallbackSrc="/images/collections/collection-01-cover.jpg"
+                alt='Not Of This World Tee in washed black, back view, with a large distressed "NOT OF THIS WORLD" type graphic'
                 fill
                 sizes="(min-width: 1024px) 48vw, 100vw"
                 className="object-cover object-center"
@@ -62,9 +62,9 @@ export function HeroSection() {
             <div className="surface-subtle relative overflow-hidden rounded-[1.5rem]">
               <div className="relative aspect-[0.86] md:aspect-[0.72] lg:aspect-[1.32]">
                 <BrandImage
-                  src="/images/products/back/sacred-textiles-tee-back.png"
-                  fallbackSrc="/images/products/front/crown-of-thorns-hoodie-front.svg"
-                  alt="Sacred Textiles Tee feature view"
+                  src="/images/products/back/sacred-textiles-tee-back.jpg"
+                  fallbackSrc="/images/products/front/crown-of-thorns-hoodie-front.jpg"
+                  alt="Sacred Textiles Tee in charcoal wash, back view, plain with no graphic"
                   fill
                   sizes="(min-width: 1024px) 18vw, 48vw"
                   className="object-cover"

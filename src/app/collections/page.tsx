@@ -1,19 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { BrandImage } from "@/components/ui/brand-image";
 import { AnimatedReveal } from "@/components/ui/animated-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { collectionsContent } from "@/data/site";
+import { collectionsContent, pageMeta } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Collections",
-  description: collectionsContent.headingDescription,
+  title: pageMeta.collections.title,
+  description: pageMeta.collections.description,
+  alternates: { canonical: "/collections" },
 };
 
 export default function CollectionsPage() {
   return (
     <div className="container-shell space-y-8 pb-20">
+      <Breadcrumbs
+        items={[{ label: "Home", href: "/" }, { label: "Collections" }]}
+      />
       <AnimatedReveal>
         <SectionHeading
           label={collectionsContent.headingLabel}
@@ -25,9 +30,9 @@ export default function CollectionsPage() {
         <AnimatedReveal className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03]">
           <div className="relative aspect-[1.02] lg:aspect-[0.98]">
             <BrandImage
-              src="/images/collections/collection-01-grid.svg"
-              fallbackSrc="/images/editorial/archive-signal.svg"
-              alt="Collection 01 grid artwork"
+              src="/images/collections/collection-01-grid.jpg"
+              fallbackSrc="/images/editorial/archive-signal.jpg"
+              alt="Collection 01 layout artwork featuring the Heavy Washed Jacket with garment specifications"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"

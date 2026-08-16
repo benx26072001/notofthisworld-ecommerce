@@ -1,15 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ProductGallery } from "@/components/product/product-gallery";
 import { RecommendedCarousel } from "@/components/product/recommended-carousel";
 import { useCart } from "@/components/providers/cart-provider";
 import { QuantitySelector } from "@/components/ui/quantity-selector";
 import { SizeGuideModal } from "@/components/ui/size-guide-modal";
 import { SizeSelector } from "@/components/ui/size-selector";
+import { StickyMobileCta } from "@/components/ui/sticky-mobile-cta";
 import { getProductGallery } from "@/data/products";
 import { formatCurrency, getStockLabel } from "@/lib/utils";
 import type { Product } from "@/types/product";
@@ -38,6 +40,13 @@ export function ProductPageClient({
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const { addItem } = useCart();
   const gallery = useMemo(() => getProductGallery(product), [product]);
+  const addToCartRef = useRef<HTMLDivElement>(null);
+
+  const handleAddToCart = () => {
+    if (selectedSize) {
+      addItem({ product, quantity, size: selectedSize });
+    }
+  };
 
   const sectionContent = {
     details: [product.longDescription],
@@ -50,6 +59,13 @@ export function ProductPageClient({
   return (
     <>
       <div className="container-shell space-y-11 pb-20">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Shop", href: "/shop" },
+            { label: product.name },
+          ]}
+        />
         <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
           <ProductGallery images={gallery} title={product.name} />
 
@@ -120,7 +136,10 @@ export function ProductPageClient({
                 <p className="text-[0.68rem] uppercase tracking-[0.34em] text-white/54">
                   Quantity
                 </p>
-                <div className="grid gap-3 sm:grid-cols-[auto_1fr]">
+                <div
+                  ref={addToCartRef}
+                  className="grid gap-3 sm:grid-cols-[auto_1fr]"
+                >
                   <QuantitySelector
                     quantity={quantity}
                     onDecrease={() => setQuantity((current) => Math.max(1, current - 1))}
@@ -130,11 +149,7 @@ export function ProductPageClient({
                   <button
                     type="button"
                     disabled={soldOut || !selectedSize}
-                    onClick={() => {
-                      if (selectedSize) {
-                        addItem({ product, quantity, size: selectedSize });
-                      }
-                    }}
+                    onClick={handleAddToCart}
                     className="button-primary inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-[0.68rem] font-semibold uppercase tracking-[0.32em]"
                   >
                     {soldOut ? "Sold Out" : "Add to cart"}
@@ -199,6 +214,15 @@ export function ProductPageClient({
       </div>
 
       <SizeGuideModal isOpen={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
+
+      {!soldOut ? (
+        <StickyMobileCta
+          label="Add to Bag"
+          meta={formatCurrency(product.price)}
+          watchRef={addToCartRef}
+          onClick={handleAddToCart}
+        />
+      ) : null}
     </>
   );
 }

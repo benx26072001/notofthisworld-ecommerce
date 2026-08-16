@@ -30,33 +30,40 @@ function createImage(
   };
 }
 
-function createProductMedia(slug: string, name: string) {
-  const frontSrc = `/images/products/front/${slug}-front.svg`;
+type ProductMediaAlts = {
+  front: string;
+  back: string;
+  detail: string;
+  editorial: string;
+};
+
+function createProductMedia(slug: string, alts: ProductMediaAlts) {
+  const frontSrc = `/images/products/front/${slug}-front.jpg`;
 
   return {
     front: createImage(
       frontSrc,
-      `${name} front garment view`,
+      alts.front,
       "front",
-      "/images/editorial/archive-signal.svg",
+      "/images/editorial/archive-signal.jpg",
     ),
     back: createImage(
-      `/images/products/back/${slug}-back.svg`,
-      `${name} back garment view`,
+      `/images/products/back/${slug}-back.jpg`,
+      alts.back,
       "back",
       frontSrc,
     ),
     details: [
       createImage(
-        `/images/products/details/${slug}-detail.svg`,
-        `${name} fabric and finish detail`,
+        `/images/products/details/${slug}-detail.jpg`,
+        alts.detail,
         "detail",
         frontSrc,
       ),
     ],
     editorial: createImage(
-      `/images/editorial/${slug}-editorial.svg`,
-      `${name} editorial feature composition`,
+      `/images/editorial/${slug}-editorial.jpg`,
+      alts.editorial,
       "editorial",
       frontSrc,
     ),
@@ -98,29 +105,15 @@ export const products: Product[] = [
       "Do not iron directly over the graphic.",
     ],
     shippingNotes: standardShipping,
-    images: {
-      ...createProductMedia("not-of-this-world-tee", "Not Of This World Tee"),
-      front: createImage(
-        "/images/products/front/not-of-this-world-tee-front.png",
-        "Not Of This World Tee front garment view",
-        "front",
-        "/images/editorial/archive-signal.svg",
-      ),
-      back: createImage(
-        "/images/products/back/not-of-this-world-tee-back.png",
-        "Not Of This World Tee back garment view",
-        "back",
-        "/images/products/front/not-of-this-world-tee-front.png",
-      ),
-      details: [
-        createImage(
-          "/images/products/details/not-of-this-world-tee-detail-1.png",
-          "Not Of This World Tee detail image",
-          "detail",
-          "/images/products/front/not-of-this-world-tee-front.png",
-        ),
-      ],
-    },
+    images: createProductMedia("not-of-this-world-tee", {
+      front:
+        'Not Of This World Tee in washed black, front view, printed with a halftone crown-of-thorns portrait of Christ and the words "For I am not of this world"',
+      back: 'Not Of This World Tee in washed black, back view, with a large distressed "NOT OF THIS WORLD" type graphic',
+      detail:
+        "Close-up of the Not Of This World Tee chest print, showing cracked halftone texture on washed black jersey",
+      editorial:
+        "Two Not Of This World tees laid flat on pale concrete in warm daylight, styled with books and a glass",
+    }),
     relatedProducts: [
       "sacred-textiles-tee",
       "faith-archive-long-sleeve",
@@ -162,15 +155,15 @@ export const products: Product[] = [
       "Avoid harsh detergents to preserve the fade.",
     ],
     shippingNotes: standardShipping,
-    images: {
-      ...createProductMedia("sacred-textiles-tee", "Sacred Textiles Tee"),
-      back: createImage(
-        "/images/products/back/sacred-textiles-tee-back.png",
-        "Sacred Textiles Tee back garment view",
-        "back",
-        "/images/products/front/sacred-textiles-tee-front.png",
-      ),
-    },
+    images: createProductMedia("sacred-textiles-tee", {
+      front:
+        'Sacred Textiles Tee in charcoal wash, front view, with a large white dove above the words "Not of this world"',
+      back: "Sacred Textiles Tee in charcoal wash, back view, plain with no graphic",
+      detail:
+        "Close-up of the Sacred Textiles Tee dove graphic and serif lettering on folded charcoal jersey",
+      editorial:
+        "Sacred Textiles Tee laid flat on a concrete table with linen and a potted olive branch in window light",
+    }),
     relatedProducts: [
       "not-of-this-world-tee",
       "faith-archive-long-sleeve",
@@ -212,10 +205,15 @@ export const products: Product[] = [
       "Do not bleach.",
     ],
     shippingNotes: standardShipping,
-    images: createProductMedia(
-      "faith-archive-long-sleeve",
-      "Faith Archive Long Sleeve",
-    ),
+    images: createProductMedia("faith-archive-long-sleeve", {
+      front:
+        "Faith Archive Long Sleeve in washed charcoal, front view, with a small script Faith Archive logo at the chest",
+      back: "Faith Archive Long Sleeve in washed charcoal, back view, with an engraved angel-and-cross illustration",
+      detail:
+        "Close-up of the ribbed collar and script Faith Archive chest logo on washed charcoal cotton",
+      editorial:
+        "Faith Archive Long Sleeve laid on travertine beside a print of its back graphic, in soft daylight",
+    }),
     relatedProducts: [
       "not-of-this-world-tee",
       "crown-of-thorns-hoodie",
@@ -258,7 +256,15 @@ export const products: Product[] = [
       "Avoid softeners on brushed fleece.",
     ],
     shippingNotes: standardShipping,
-    images: createProductMedia("crown-of-thorns-hoodie", "Crown of Thorns Hoodie"),
+    images: createProductMedia("crown-of-thorns-hoodie", {
+      front:
+        "Crown of Thorns Hoodie in night charcoal, front view, with a crown of thorns printed across the chest and kangaroo pocket",
+      back: "Crown of Thorns Hoodie in night charcoal, back view, with a large crown of thorns graphic",
+      detail:
+        "Close-up of the crown of thorns print and cross-R emblem on folded night charcoal fleece",
+      editorial:
+        "Crown of Thorns Hoodie folded on a concrete plinth beside a cap, lit by warm window light",
+    }),
     relatedProducts: [
       "faith-archive-long-sleeve",
       "heavy-washed-jacket",
@@ -300,7 +306,15 @@ export const products: Product[] = [
       "Warm iron inside out if required.",
     ],
     shippingNotes: standardShipping,
-    images: createProductMedia("washed-cross-crewneck", "Washed Cross Crewneck"),
+    images: createProductMedia("washed-cross-crewneck", {
+      front:
+        "Washed Cross Crewneck in faded coal, front view, with a large hand-painted cross and figure across the chest",
+      back: "Washed Cross Crewneck in faded coal, back view, plain with a small cross-R emblem at the neck",
+      detail:
+        "Close-up of the painted cross graphic and ribbed cuff on faded coal fleece",
+      editorial:
+        "Washed Cross Crewneck folded on a concrete ledge under palm-leaf shadow in warm daylight",
+    }),
     relatedProducts: [
       "crown-of-thorns-hoodie",
       "faith-archive-long-sleeve",
@@ -342,7 +356,15 @@ export const products: Product[] = [
       "Air dry away from direct heat.",
     ],
     shippingNotes: standardShipping,
-    images: createProductMedia("archive-cap", "Archive Cap"),
+    images: createProductMedia("archive-cap", {
+      front:
+        "Archive Cap in washed black, front view, with an embroidered cross-R emblem on the crown",
+      back: "Archive Cap in washed black, back view, showing the adjustable metal buckle strap",
+      detail:
+        "Close-up of the embroidered cross-R emblem and washed twill texture on the cap front",
+      editorial:
+        "Two Archive Caps on a concrete surface in warm daylight, one front-facing and one showing the strap",
+    }),
     relatedProducts: [
       "utility-tote",
       "sacred-textiles-tee",
@@ -384,7 +406,15 @@ export const products: Product[] = [
       "Shape while damp and air dry.",
     ],
     shippingNotes: standardShipping,
-    images: createProductMedia("utility-tote", "Utility Tote"),
+    images: createProductMedia("utility-tote", {
+      front:
+        'Utility Tote in coal canvas, front view, with a blurred "Let There Be Light" print and a printed spec panel',
+      back: "Utility Tote in coal canvas, back view, with side pockets and a small printed spec panel",
+      detail:
+        "Close-up of the woven label and stitched seam on coal canvas, the Let There Be Light print behind",
+      editorial:
+        "Utility Tote standing on a concrete counter in a sunlit room with a potted plant behind",
+    }),
     relatedProducts: [
       "archive-cap",
       "not-of-this-world-tee",
@@ -426,7 +456,15 @@ export const products: Product[] = [
       "Store on a broad hanger.",
     ],
     shippingNotes: outerwearShipping,
-    images: createProductMedia("heavy-washed-jacket", "Heavy Washed Jacket"),
+    images: createProductMedia("heavy-washed-jacket", {
+      front:
+        "Heavy Washed Jacket in deep wash denim, front view, with chest flap pockets and a cross-R emblem",
+      back: "Heavy Washed Jacket in deep wash denim, back view, with a large Madonna portrait print",
+      detail:
+        "Close-up of the Madonna portrait print on deep wash denim, showing faded screen texture",
+      editorial:
+        "Heavy Washed Jacket laid across concrete with linen, back graphic facing up in warm daylight",
+    }),
     relatedProducts: [
       "crown-of-thorns-hoodie",
       "faith-archive-long-sleeve",

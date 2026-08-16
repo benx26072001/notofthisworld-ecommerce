@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ProductPageClient } from "@/components/product/product-page-client";
-import {
-  getProductBySlug,
-  getProductPrimaryImage,
-  getRelatedProducts,
-  products,
-} from "@/data/products";
+import { getProductBySlug, getRelatedProducts, products } from "@/data/products";
+import { brand, siteUrl } from "@/data/site";
+import type { Product, StockStatus } from "@/types/product";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -34,17 +31,38 @@ export async function generateMetadata({
   return {
     title: product.name,
     description: product.shortDescription,
+    alternates: { canonical: `/shop/${product.slug}` },
     openGraph: {
       title: product.name,
       description: product.longDescription,
-      images: [
-        {
-          url: getProductPrimaryImage(product).src,
-          width: 1200,
-          height: 1500,
-          alt: getProductPrimaryImage(product).alt,
-        },
-      ],
+    },
+  };
+}
+
+const AVAILABILITY: Record<StockStatus, string> = {
+  "in-stock": "https://schema.org/InStock",
+  "low-stock": "https://schema.org/InStock",
+  "sold-out": "https://schema.org/OutOfStock",
+};
+
+function buildProductJsonLd(product: Product) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: `${siteUrl}/shop/${product.slug}/opengraph-image`,
+    description: product.shortDescription,
+    sku: product.code,
+    brand: {
+      "@type": "Brand",
+      name: brand.name,
+    },
+    offers: {
+      "@type": "Offer",
+      url: `${siteUrl}/shop/${product.slug}`,
+      price: product.price,
+      priceCurrency: brand.currency,
+      availability: AVAILABILITY[product.stockStatus],
     },
   };
 }
@@ -58,10 +76,18 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <ProductPageClient
-      key={product.slug}
-      product={product}
-      relatedProducts={getRelatedProducts(product.slug)}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildProductJsonLd(product)),
+        }}
+      />
+      <ProductPageClient
+        key={product.slug}
+        product={product}
+        relatedProducts={getRelatedProducts(product.slug)}
+      />
+    </>
   );
 }

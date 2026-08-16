@@ -4,6 +4,7 @@ import { useDeferredValue, useMemo, useState } from "react";
 
 import { Search } from "lucide-react";
 
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { BrandImage } from "@/components/ui/brand-image";
 import { ProductGrid } from "@/components/product/product-grid";
 import { FilterPanel } from "@/components/shop/filter-panel";
@@ -68,6 +69,7 @@ export function ShopPageClient({ products, defaultToNewest = false }: ShopPageCl
 
   return (
     <div className="container-shell space-y-7 pb-20">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Shop" }]} />
       <AnimatedReveal className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
         <div className="space-y-4 lg:pb-2">
           <SectionHeading label="SHOP" title="Collection 01" />
@@ -75,9 +77,9 @@ export function ShopPageClient({ products, defaultToNewest = false }: ShopPageCl
         <div className="surface-panel relative overflow-hidden rounded-[1.9rem]">
           <div className="relative aspect-[1.6] md:aspect-[1.8]">
             <BrandImage
-              src="/images/collections/collection-01-cover.svg"
-              fallbackSrc="/images/editorial/archive-signal.svg"
-              alt="Collection 01 cover artwork"
+              src="/images/collections/collection-01-cover.jpg"
+              fallbackSrc="/images/editorial/archive-signal.jpg"
+              alt="Collection 01 cover artwork featuring the Crown of Thorns Hoodie against a dark storm sky"
               fill
               sizes="(min-width: 1024px) 52vw, 100vw"
               className="object-cover"
